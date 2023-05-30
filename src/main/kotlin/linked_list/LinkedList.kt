@@ -28,7 +28,20 @@ interface LinkedList<T> {
         }
 
         override fun removeLast(){
+            if (isEmpty()) return
 
+            if (head?.next == null)
+            {
+                head = null
+            }
+
+            var current = head
+
+            while(current?.next?.next != null)
+            {
+                current = current?.next as ListNode.Base<T>?
+            }
+            current?.next = null
         }
 
 
@@ -42,6 +55,19 @@ interface LinkedList<T> {
             if (isEmpty()) return
             val value = head
             head = value?.next as ListNode.Base<T>?
+        }
+
+        fun size() : Int{
+            if (isEmpty()) return 0
+            if (head?.next == null) return 1
+            var size = 0
+            var current = head
+            while(current != null)
+            {
+                current = current.next as ListNode.Base<T>?
+                size += 1
+            }
+            return size
         }
 
         override fun print()

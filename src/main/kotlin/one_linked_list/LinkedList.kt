@@ -1,4 +1,4 @@
-package linked_list
+package one_linked_list
 
 
 interface LinkedList<T> {
@@ -39,15 +39,22 @@ interface LinkedList<T> {
 
             while(current?.next?.next != null)
             {
-                current = current?.next as ListNode.Base<T>?
+                current = current.next as ListNode.Base<T>?
             }
             current?.next = null
         }
 
 
         override fun getElement(index: Int) : T{
+            var current = head
+            var currentIndex = 0
 
-            return head?.data!!
+            while (current != null && currentIndex < index) {
+                current = current.next as ListNode.Base<T>?
+                currentIndex++
+            }
+
+            return current?.data as T
         }
 
         override fun removeFirst()

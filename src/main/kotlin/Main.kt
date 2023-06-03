@@ -1,4 +1,4 @@
-import linked_list.LinkedList
+import one_linked_list.LinkedList
 
 fun main() {
     val list = LinkedList.Base<Int>()

@@ -1,4 +1,4 @@
-package linked_list
+package one_linked_list
 
 interface ListNode<T>
 {

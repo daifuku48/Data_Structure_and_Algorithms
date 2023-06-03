@@ -26,15 +26,28 @@ interface TwoLinkedList<T> {
         }
 
         override fun deleteFirst() {
-            TODO("Not yet implemented")
+            var current = head
+            if (isEmpty())
+                return
+            current = current?.next
         }
 
         override fun deleteElement(index: Int) {
-            TODO("Not yet implemented")
+            var current = head
+            if (isEmpty())
+                return
+            var count = 0
+            while(current?.next != null || count != index) {
+                if (count == index)
+                {
+                    var prevv = current?.prev
+                    var next = current?.next
+                }
+            }
         }
 
         override fun getFirst(): T {
-            TODO("Not yet implemented")
+            return head?.data as T
         }
 
         override fun isEmpty() = head == null

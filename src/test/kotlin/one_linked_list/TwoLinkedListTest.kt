@@ -16,5 +16,12 @@ class TwoLinkedListTest<T> {
         assertEquals(list.getLast(), 3)
     }
 
+    fun isGetFirst()
+    {
+        val list = TwoLinkedList.Base<Int>()
+        list.insert(3)
+        list.insert(4)
+        assertEquals(list.getFirst(), 3)
+    }
 
 }

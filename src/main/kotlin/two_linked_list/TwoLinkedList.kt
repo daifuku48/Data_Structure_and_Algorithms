@@ -40,7 +40,12 @@ interface TwoLinkedList<T> {
         override fun isEmpty() = head == null
 
         override fun getLast(): T {
-            TODO("Not yet implemented")
+            var current = head
+            while(current?.next != null)
+            {
+                current = current.next
+            }
+            return current?.data as T
         }
 
         override fun insert(data: T) {
@@ -50,7 +55,16 @@ interface TwoLinkedList<T> {
                 head = node
                 return
             }
-
+            var current = head
+            while (current?.next != null)
+            {
+                if (current.next == null)
+                {
+                    current.next = ListNode.Base(data)
+                    break
+                }
+                current = current.next
+            }
         }
     }
 }

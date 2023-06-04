@@ -18,11 +18,31 @@ interface TwoLinkedList<T> {
         override var prev: ListNode<T>? = null
 
         override fun deleteLast() {
-            TODO("Not yet implemented")
+            var current = head
+            if (isEmpty())
+                return
+            while(current?.next != null)
+            {
+                current = current.next
+            }
+            current = current?.prev
         }
 
         override fun getElement(index: Int): T {
-            TODO("Not yet implemented")
+            var current = head
+            if (isEmpty())
+                throw ArrayIndexOutOfBoundsException()
+            var count = 0
+            while(current?.next != null)
+            {
+                if (count == index)
+                {
+                    return current.data
+                }
+                count++
+                current = current.next
+            }
+            throw ArrayIndexOutOfBoundsException()
         }
 
         override fun deleteFirst() {
@@ -33,10 +53,10 @@ interface TwoLinkedList<T> {
         }
 
         override fun deleteElement(index: Int) {
-            var current = head
+            val current = head
             if (isEmpty())
                 return
-            var count = 0
+            val count = 0
             while(current?.next != null || count != index) {
                 if (count == index)
                 {
@@ -47,12 +67,16 @@ interface TwoLinkedList<T> {
         }
 
         override fun getFirst(): T {
+            if (isEmpty())
+                throw ArrayIndexOutOfBoundsException()
             return head?.data as T
         }
 
         override fun isEmpty() = head == null
 
         override fun getLast(): T {
+            if (isEmpty())
+                throw ArrayIndexOutOfBoundsException()
             var current = head
             while(current?.next != null)
             {

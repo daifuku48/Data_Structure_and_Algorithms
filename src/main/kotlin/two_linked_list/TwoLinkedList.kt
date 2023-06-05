@@ -21,11 +21,10 @@ interface TwoLinkedList<T> {
             var current = head
             if (isEmpty())
                 return
-            while(current?.next != null)
-            {
+            while (current?.next != null) {
                 current = current.next
             }
-            current = current?.prev
+            current?.prev?.next = null
         }
 
         override fun getElement(index: Int): T {
@@ -33,10 +32,8 @@ interface TwoLinkedList<T> {
             if (isEmpty())
                 throw ArrayIndexOutOfBoundsException()
             var count = 0
-            while(current?.next != null)
-            {
-                if (count == index)
-                {
+            while (current?.next != null) {
+                if (count == index) {
                     return current.data
                 }
                 count++
@@ -46,23 +43,24 @@ interface TwoLinkedList<T> {
         }
 
         override fun deleteFirst() {
-            var current = head
             if (isEmpty())
                 return
-            current = current?.next
+            head = head?.next
+            head?.prev = null
         }
 
         override fun deleteElement(index: Int) {
-            val current = head
+            var current = head
             if (isEmpty())
                 return
-            val count = 0
-            while(current?.next != null || count != index) {
-                if (count == index)
-                {
-                    var prevv = current?.prev
-                    var next = current?.next
-                }
+            var count = 0
+            while (current?.next != null && count != index) {
+                count++
+                current = current.next
+            }
+            if (count == index) {
+                current?.prev?.next = current?.next
+                current?.next?.prev = current?.prev
             }
         }
 
@@ -78,8 +76,7 @@ interface TwoLinkedList<T> {
             if (isEmpty())
                 throw ArrayIndexOutOfBoundsException()
             var current = head
-            while(current?.next != null)
-            {
+            while (current?.next != null) {
                 current = current.next
             }
             return current?.data as T
@@ -87,21 +84,16 @@ interface TwoLinkedList<T> {
 
         override fun insert(data: T) {
             val node = ListNode.Base(data)
-            if (isEmpty())
-            {
+            if (isEmpty()) {
                 head = node
                 return
             }
             var current = head
-            while (current?.next != null)
-            {
-                if (current.next == null)
-                {
-                    current.next = ListNode.Base(data)
-                    break
-                }
+            while (current?.next != null) {
                 current = current.next
             }
+            current?.next = node
+            node.prev = current
         }
     }
 }
